@@ -2,8 +2,7 @@ fn main(){
     let n :i32 = 5;
 
     for i in 1..=n {
-        let even = is_even(i);
-        if even == true{
+        if is_even(i){
             println!("{}", i);
         }
     }
