@@ -1,23 +1,19 @@
 
-fn main(){
- let my_user = User {
-    username : String::from("abc_10"),
-    name : String::from("abcd__12"),
-    email : String::from("abc@gmail.com")
- };
-
- my_user.print_info();
- 
- 
-}
-struct User{
-    username : String,
-    name : String,
+struct User {
+    name  : String,
     email : String,
 }
 
-impl User {
-   fn print_info(&self){
-       println!("{}", self.username)
-   }
+impl User  {
+    fn print_info(&self){
+        println!("name is {} and email is {}", self.name, self.email);
+    }
+}
+fn main(){
+ let user : User = User {
+    name  : String::from("hrithik"),
+    email : String::from("hrithik@gmail.com"),
+ };
+
+ user.print_info();
 }
