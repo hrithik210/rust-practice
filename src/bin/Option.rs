@@ -7,7 +7,7 @@ struct User{
 impl User{
     fn print_info(&self){
 
-        match self.email{
+        match &self.email{
             Some(email) => println!("username is {} and name is {} email is {}", self.username, self.name, email),
             None => println!("username is {} and name is {}", self.username, self.name)
         }
