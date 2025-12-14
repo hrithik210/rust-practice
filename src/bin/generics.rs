@@ -41,5 +41,6 @@ fn main(){
     };
 
     print_summary(&user);
+    print_summary(&product);
 
 }
