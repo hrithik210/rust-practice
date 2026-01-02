@@ -9,13 +9,14 @@ enum Shape {
 
 }
 
-fn calcualate_area(s : &Shape) -> f32 {
-    let val = match  s{
-        Shape::Circle(radius) => PI * radius * radius,
-        Shape::Square(side) => side * side,
-        Shape::Rectangle(width,  height) => width + height
-    };
-    return val;
+impl Shape {
+    fn calcualate_area(&self) -> f32{
+        match &self {
+            Shape::Circle(radius) => PI * radius * radius,
+            Shape::Square(side) => side * side,
+            Shape::Rectangle(width, height) => width + height
+        }
+    }
 }
 
 fn main(){
@@ -23,11 +24,9 @@ fn main(){
     let square = Shape::Square(22.3);
     let rectangle = Shape::Rectangle(22.3, 33.2);
 
-    let area_Circle = calcualate_area(&circle);
-    let area_square = calcualate_area(&square);
-
-    println!("{area_Circle} {:?}", circle);
-    println!("{area_square} {:?}", square);
+    println!("{} {:?}",circle.calcualate_area() ,circle);
+    println!("{} {:?}", square.calcualate_area(),  square);
+    println!("{} {:?}", rectangle.calcualate_area(),  rectangle);
 
 
 }
