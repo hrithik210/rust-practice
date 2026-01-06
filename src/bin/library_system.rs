@@ -1,5 +1,5 @@
 use std::vec;
-
+#[derive(Debug)]
 enum BookStatus {
     Availabe,
     CheckedOut(String)
@@ -8,24 +8,28 @@ enum BookStatus {
 struct Book {
     title : String,
     status : BookStatus,
-    person : String
 }
 
 impl Book {
-    fn checkout(&self){
+    fn checkout(&mut self, name : &String){
         match &self.status {
-            BookStatus::Availabe => println!("{} is avaiable", self.title),
-            BookStatus::CheckedOut(person ) => println!("{} is already bought by {}", &self.title , &self.person )
-        }
+            BookStatus::Availabe => {
+                println!("{} is available", &self.title);
+                self.status = BookStatus::CheckedOut(name.to_string());
+                println!("{} is owned by {} now", &self.title ,name)
+            },
+            BookStatus::CheckedOut(name) => {
+                println!("{} is already bought by {}", &self.title , name)
+            }
     }
-}
+}}
 
 
 fn main(){
     let mut books = vec![Book{
         title : "idk".to_string(),
         status: BookStatus::Availabe,
-        person : "".to_string()
     }];
-    books[0].checkout();
+    let person = String::from("hrithik");
+    books[0].checkout(&person);
 }
