@@ -11,15 +11,17 @@ struct Book {
 }
 
 impl Book {
-    fn checkout(&mut self, name : &String){
+    fn checkout(&mut self, name : &String) -> Result<(), &String>{
         match &self.status {
             BookStatus::Availabe => {
                 println!("{} is available", &self.title);
                 self.status = BookStatus::CheckedOut(name.to_string());
-                println!("{} is owned by {} now", &self.title ,name)
+                return Ok(());
+
             },
             BookStatus::CheckedOut(name) => {
-                println!("{} is already bought by {}", &self.title , name)
+                println!("{} is already bought by {}", &self.title , name);
+                return  Err("{} is already bought by {}", &self.title , name);
             }
     }
 }}
