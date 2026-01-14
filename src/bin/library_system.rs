@@ -11,7 +11,7 @@ struct Book {
 }
 
 impl Book {
-    fn checkout(&mut self, name : &String) -> Result<(), &String>{
+    fn checkout(&mut self, name : &String) -> Result<(), String>{
         match &self.status {
             BookStatus::Availabe => {
                 println!("{} is available", &self.title);
@@ -19,9 +19,9 @@ impl Book {
                 return Ok(());
 
             },
-            BookStatus::CheckedOut(name) => {
-                println!("{} is already bought by {}", &self.title , name);
-                return  Err("{} is already bought by {}", &self.title , name);
+            BookStatus::CheckedOut(borrower) => {
+                println!("{} is already bought by {}", &self.title , borrower);
+                Err(format!("{} is already bought by {}", &self.title ,borrower))
             }
     }
 }}
@@ -33,5 +33,8 @@ fn main(){
         status: BookStatus::Availabe,
     }];
     let person = String::from("hrithik");
-    books[0].checkout(&person);
+    match books[0].checkout(&person) {
+        Ok(_) => println!("checked out successfully"),
+        Err(e) => println!("{}" , e)
+    }
 }
