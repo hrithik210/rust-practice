@@ -34,7 +34,7 @@ fn main(){
     }];
     let person = String::from("hrithik");
     match books[0].checkout(&person) {
-        Ok(_) => println!("checked out successfully"),
+        Ok(_) => {println!("checked out successfully")}
         Err(e) => println!("{}" , e)
     }
 }
